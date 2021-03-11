@@ -1,23 +1,38 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
 
-const Home = () => (
-  <div>
-    <h1>Hello, world!</h1>
-    <p>Welcome to your new single-page application, built with:</p>
-    <ul>
-      <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-      <li><a href='https://facebook.github.io/react/'>React</a> and <a href='https://redux.js.org/'>Redux</a> for client-side code</li>
-      <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-    </ul>
-    <p>To help you get started, we have also set up:</p>
-    <ul>
-      <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-      <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-      <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-    </ul>
-    <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-  </div>
-);
+
+const Home = () => {
+
+    const [email, setEmail] = React.useState<string>("");
+    const [password, setPassword] = React.useState<string>("");
+
+    const submitHandler = (event: MouseEvent) => {
+        event.preventDefault();
+    }
+
+    return (
+        <Container>
+            <h1>Hello!</h1>
+            <p>Welcome to Best Food Ordering System!</p>
+            <p>Please login to start making an order.</p>
+            <div>
+                {/*Login form for auth*/}
+                <Form>
+                    <FormGroup>
+                        <Label for="email">Email</Label>
+                        <Input type="email" name="email" id="email" placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="password">Password</Label>
+                        <Input type="password" name="password" id="Password" onChange={(e) => setPassword(e.target.value)}/>
+                    </FormGroup>
+                    <Button block size="lg" type="submit" onclick={submitHandler}>Login</Button>
+                </Form>
+            </div>
+        </Container>
+    )
+}
 
 export default connect()(Home);
